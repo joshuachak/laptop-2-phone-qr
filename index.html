@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2f6fde">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Laptop → Phone</title>
+</head>
+<body>
+<main>
+  <h1>Laptop → Phone experiments</h1>
+  <p class="lead">Five ways to get text and files from a Mac to an Android phone. Each one is its own page, so we can compare them side by side.</p>
+
+  <div class="card row" style="align-items:flex-start">
+    <canvas id="openQr" class="qr" style="width:180px"></canvas>
+    <div style="flex:1;min-width:220px">
+      <h2>Start here: open the scanner on your phone</h2>
+      <p class="muted">Point your phone camera at this code to open the scanner. In Chrome, use “Add to Home screen” to install it as an app.</p>
+      <p class="muted" id="openUrl"></p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <a class="card" href="./text.html" style="color:inherit;text-decoration:none">
+      <h2>1 · One QR code for text</h2>
+      <p class="muted">Type or paste on the Mac and a QR code appears. “Plain” codes open in any camera app; “Compact” codes squeeze in about twice as much text and need our scanner.</p>
+    </a>
+    <a class="card" href="./animated.html" style="color:inherit;text-decoration:none">
+      <h2>2 · Animated QR (and colour QR)</h2>
+      <p class="muted">Send images and small files as a looping QR animation with fountain codes. Turn on colour mode to pack 3 codes into each frame (approach 4).</p>
+    </a>
+    <a class="card" href="./p2p.html" style="color:inherit;text-decoration:none">
+      <h2>3 · Direct peer-to-peer</h2>
+      <p class="muted">WebRTC with no signalling server: the phone scans the Mac, the Mac’s webcam scans the phone, then files flow directly at Wi-Fi speed.</p>
+    </a>
+    <div class="card">
+      <h2>5 · AirDrop via the share sheet</h2>
+      <p class="muted">The text and animated pages have a “Share…” button that opens the Mac share menu. AirDrop to Android works only on Pixel 10 phones, with AirDrop set to “Everyone for 10 minutes”.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Existing tools to compare against</h2>
+    <ul class="muted">
+      <li><a href="https://pairdrop.net/" target="_blank" rel="noopener">PairDrop</a>: web app, QR pairing, WebRTC peer-to-peer.</li>
+      <li><a href="https://localsend.org/" target="_blank" rel="noopener">LocalSend</a>: native app, same Wi-Fi only, no server.</li>
+      <li><a href="https://cimbar.org/" target="_blank" rel="noopener">cimbar</a>: colour barcode at about 100 KB/s; the receiver is the CameraFileCopy Android app.</li>
+    </ul>
+  </div>
+</main>
+<script type="module" src="./src/pages/index.ts"></script>
+</body>
+</html>

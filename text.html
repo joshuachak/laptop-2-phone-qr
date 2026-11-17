@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2f6fde">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>1 · Text QR</title>
+</head>
+<body>
+<main>
+  <h1>1 · One QR code for text</h1>
+  <p class="lead">Type or paste below. The QR code updates as you type. Scan it with the phone scanner page (or, for “Plain”, any camera app).</p>
+  <div class="grid">
+    <div class="card">
+      <textarea id="text" placeholder="Paste text or a link…" autofocus></textarea>
+      <div class="row" style="margin-top:8px">
+        <label>Format
+          <select id="mode">
+            <option value="auto">Auto</option>
+            <option value="plain">Plain (any camera)</option>
+            <option value="compact">Compact (our scanner)</option>
+          </select>
+        </label>
+        <label>Error correction
+          <select id="ecc">
+            <option value="L">L (7%, most data)</option>
+            <option value="M" selected>M (15%)</option>
+            <option value="Q">Q (25%)</option>
+          </select>
+        </label>
+        <button id="paste" class="secondary">Paste</button>
+        <button id="share" class="secondary">Share… (AirDrop)</button>
+      </div>
+      <p class="stats" id="info"></p>
+      <p class="muted" id="shareMsg"></p>
+    </div>
+    <div class="card">
+      <canvas id="qr" class="qr"></canvas>
+    </div>
+  </div>
+</main>
+<script type="module" src="./src/pages/text.ts"></script>
+</body>
+</html>

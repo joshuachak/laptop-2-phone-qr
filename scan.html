@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2f6fde">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Phone scanner</title>
+</head>
+<body>
+<main>
+  <h1>Phone scanner</h1>
+  <p class="lead">Reads every kind of code from these experiments: plain and compact text, animated QR, and colour QR.</p>
+  <div class="card">
+    <div class="row">
+      <button id="start">Start camera</button>
+      <button id="stop" class="secondary" disabled>Stop</button>
+      <label>Camera <select id="cams"><option value="">Back camera</option></select></label>
+      <label>Analyse at
+        <select id="res"><option value="640">640 px</option><option value="960" selected>960 px</option><option value="1280">1280 px</option><option value="1920">1920 px</option></select>
+      </label>
+      <label><input type="checkbox" id="colour"> Colour QR</label>
+    </div>
+    <video id="video" class="cam" playsinline muted style="margin-top:12px"></video>
+    <div id="progressBox" hidden style="margin-top:8px">
+      <progress id="progress" max="1" value="0"></progress>
+      <div class="stats" id="xfer"></div>
+    </div>
+    <div class="stats" id="stats">Camera off.</div>
+  </div>
+  <div class="card">
+    <h2>Received</h2>
+    <div id="list"><p class="muted">Nothing yet.</p></div>
+  </div>
+</main>
+<script type="module" src="./src/pages/scan.ts"></script>
+</body>
+</html>

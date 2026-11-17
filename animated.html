@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2f6fde">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>2 · Animated QR</title>
+</head>
+<body>
+<main>
+  <h1>2 · Animated QR</h1>
+  <p class="lead">Pick a file (or type text). The Mac plays a loop of QR codes; the phone scanner rebuilds the file from whichever frames it catches, in any order.</p>
+  <div class="grid">
+    <div class="card">
+      <div class="drop" id="drop">Drop a file here, or <label class="button secondary" style="color:var(--accent)">choose one<input id="file" type="file" hidden></label></div>
+      <p class="muted" style="margin:8px 0 4px">…or send text:</p>
+      <textarea id="text" placeholder="Long text works too" style="min-height:70px"></textarea>
+      <div class="row" style="margin-top:8px">
+        <label>Bytes per code
+          <select id="block">
+            <option>200</option><option>400</option><option selected>600</option><option>800</option><option>1000</option><option>1400</option><option>2000</option>
+          </select>
+        </label>
+        <label>Frames/s
+          <select id="fps">
+            <option>4</option><option>6</option><option selected>8</option><option>10</option><option>15</option><option>20</option><option>30</option>
+          </select>
+        </label>
+        <label>Error correction
+          <select id="ecc"><option selected>L</option><option>M</option></select>
+        </label>
+        <label><input type="checkbox" id="colour"> Colour (3 codes per frame)</label>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <button id="start">Start</button>
+        <button id="stop" class="secondary" disabled>Stop</button>
+        <button id="share" class="secondary">Share… (AirDrop)</button>
+      </div>
+      <p class="stats" id="info">Nothing selected.</p>
+      <p class="muted" id="shareMsg"></p>
+      <p class="muted">Tips: turn screen brightness up, hold the phone 20–40 cm away, and lower frames/s if the phone falls behind.</p>
+    </div>
+    <div class="card">
+      <canvas id="qr" class="qr"></canvas>
+    </div>
+  </div>
+</main>
+<script type="module" src="./src/pages/animated.ts"></script>
+</body>
+</html>

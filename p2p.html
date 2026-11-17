@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2f6fde">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>3 · Direct P2P</title>
+</head>
+<body>
+<main>
+  <h1>3 · Direct peer-to-peer</h1>
+  <p class="lead">WebRTC with no signalling server. The two devices swap their connection details through QR codes, then send text and files straight to each other, encrypted.</p>
+
+  <section id="host" class="card">
+    <h2>On the Mac</h2>
+    <ol class="muted">
+      <li>Press “Show connection code”, then scan it with the phone’s camera app. It opens this page on the phone.</li>
+      <li>The phone shows a reply code. Press “Scan reply” here and hold the phone up to the Mac’s webcam.</li>
+    </ol>
+    <div class="row">
+      <button id="offerBtn">Show connection code</button>
+      <label><input type="checkbox" id="stun" checked> Allow connecting across different networks</label>
+    </div>
+    <p class="muted">With that box ticked, each device asks Google’s public STUN server for its own internet address. Nothing you send goes through it. Untick it to stay on the local Wi-Fi only.</p>
+    <div id="offerBox" hidden>
+      <canvas id="offerQr" class="qr" style="width:min(100%,380px)"></canvas>
+      <p class="stats" id="offerInfo"></p>
+      <div class="row">
+        <button id="scanReply">Scan reply with webcam</button>
+        <input type="text" id="replyCode" placeholder="…or paste the reply code" style="flex:1;min-width:200px">
+        <button id="useReply" class="secondary">Connect</button>
+      </div>
+      <video id="video" class="cam" playsinline muted hidden style="margin-top:12px;max-height:40vh"></video>
+    </div>
+  </section>
+
+  <section id="join" class="card" hidden>
+    <h2>On the phone</h2>
+    <p class="muted">Show this reply code to the Mac’s webcam (turn your screen brightness up).</p>
+    <canvas id="replyQr" class="qr" style="width:min(100%,380px)"></canvas>
+    <div class="row" style="margin-top:8px">
+      <button id="copyReply" class="secondary">Copy reply code instead</button>
+    </div>
+  </section>
+
+  <p class="stats" id="status"></p>
+
+  <section id="session" class="card" hidden>
+    <h2>Connected</h2>
+    <p class="stats" id="route"></p>
+    <textarea id="msg" placeholder="Type text to send…" style="min-height:70px"></textarea>
+    <div class="row" style="margin-top:8px">
+      <button id="sendText">Send text</button>
+      <label class="button secondary">Send files…<input id="files" type="file" multiple hidden></label>
+    </div>
+    <div id="xferBox" hidden style="margin-top:10px">
+      <progress id="progress" max="1" value="0"></progress>
+      <div class="stats" id="xfer"></div>
+    </div>
+  </section>
+
+  <section class="card" id="receivedCard" hidden>
+    <h2>Received</h2>
+    <div id="list"></div>
+  </section>
+</main>
+<script type="module" src="./src/pages/p2p.ts"></script>
+</body>
+</html>
